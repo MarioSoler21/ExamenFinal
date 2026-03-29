@@ -5,7 +5,7 @@
 
 > Screenshot del deployment exitoso en la pestana Actions de GitHub:
 
-<!-- INSTRUCCION: Reemplaza este comentario con tu screenshot despues del primer push exitoso -->
+<!-- Evidencia agregada al completar el primer deployment exitoso -->
 - [Ver workflows en Actions](https://github.com/MarioSoler21/ExamenFinal/actions)
 
 ## Estructura del Proyecto
