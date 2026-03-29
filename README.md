@@ -1,17 +1,45 @@
 # Examen 2 - Sistemas Operativos I
+**Mario Soler | CEUTEC San Pedro Sula**
 
 ## Evidencia de Deployment
 
-Adjunta aquí tu screenshot de un deployment exitoso en la pestaña Actions de GitHub, o pega el link directo al run exitoso.
+> Screenshot del deployment exitoso en la pestana Actions de GitHub:
 
-- ![Evidencia de deployment](ruta/a/tu/screenshot.png)
-- [Ver run exitoso en Actions](https://github.com/MarioSoler21/ExamenFinal_SO_MarioSoler/actions)
+<!-- INSTRUCCION: Reemplaza este comentario con tu screenshot despues del primer push exitoso -->
+- [Ver workflows en Actions](https://github.com/MarioSoler21/ExamenFinal/actions)
 
-## Instrucciones
-- Todos los workflows están en `.github/workflows/`
-- Dockerfile y docker-compose.yml corregidos y funcionales
-- Respuestas conceptuales en `respuestas_actividad5.md`
+## Estructura del Proyecto
 
----
+```
+.
+├── .github/
+│   └── workflows/
+│       ├── ci.yml          # Actividad 2: Pipeline CI (lint, test, coverage)
+│       └── cd.yml          # Actividad 3: Pipeline CD (deploy a Docker Hub)
+├── Dockerfile              # Actividad 1A: Dockerfile corregido
+├── Dockerfile_broken_Act1A.txt  # Actividad 1A: Dockerfile original con errores
+├── docker-compose.yml      # Actividad 1B: Compose con web + db
+├── index.js                # Aplicacion Node.js
+├── package.json            # Dependencias y scripts
+├── snippet1_fixed.yml      # Actividad 4: Troubleshooting - Snippet 1
+├── snippet2_fixed.yml      # Actividad 4: Troubleshooting - Snippet 2
+├── snippet3_fixed.yml      # Actividad 4: Troubleshooting - Snippet 3
+└── respuestas_actividad5.md # Actividad 5: Preguntas conceptuales
+```
 
-> **Recuerda:** Haz push de todos los cambios y verifica que la rama `main` esté actualizada antes de entregar.
+## Actividad 1A - Errores corregidos en Dockerfile
+
+| # | Error | Correccion |
+|---|-------|------------|
+| 1 | `FROM node:18` | `FROM node:18-alpine` — imagen mas liviana y segura |
+| 2 | `npm install --production` | `npm ci --omit=dev` — flag deprecado; `npm ci` garantiza builds reproducibles |
+| 3 | Sin `USER node` | `USER node` — no ejecutar el contenedor como root |
+| 4 | `COPY . .` sin `--chown` | `COPY --chown=node:node . .` — el usuario correcto debe ser dueno de los archivos |
+
+## Actividad 4 - Errores corregidos en snippets
+
+**Snippet 1** — Error de sintaxis en triggers: faltaban los `:` y la indentacion YAML correcta.
+
+**Snippet 2** — Referencia incorrecta a secrets: `secrets.VERCEL_TOKEN` debe ser `${{ secrets.VERCEL_TOKEN }}`.
+
+**Snippet 3** — Matrix invalida: `node-version: 18` debe ser una lista `[16.x, 18.x]`.
