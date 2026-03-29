@@ -1,0 +1,16 @@
+name: CD Pipeline
+on:
+  push:
+    branches: [main]
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: production
+    steps:
+      - uses: actions/checkout@v4
+      - name: Deploy to Vercel
+        run: vercel --prod --token ${{ secrets.DEPLOY_KEY }} --env API_TOKEN=${{ secrets.API_TOKEN }}
+        env:
+          DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
+          API_TOKEN: ${{ secrets.API_TOKEN }}

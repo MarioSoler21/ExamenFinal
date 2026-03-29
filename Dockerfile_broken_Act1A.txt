@@ -1,0 +1,20 @@
+# ============================================================
+# Dockerfile con errores intencionales - Examen 2, Actividad 1 Parte A
+# Tarea: identifica y corrige los 4 errores para que el build funcione.
+#        Comando de verificacion: docker build -t myapp .
+# ============================================================
+
+FROM node:18
+
+
+WORKDIR /app
+
+COPY package*.json ./
+RUN npm install --production
+COPY . .
+
+
+
+EXPOSE 3000
+
+CMD ["node", "index.js"]

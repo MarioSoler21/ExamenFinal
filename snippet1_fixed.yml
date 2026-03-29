@@ -1,0 +1,10 @@
+# Actividad 4: Troubleshooting - Snippet 1 Corregido
+name: CI Pipeline
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main, develop]
+jobs:
+  test:
+    runs-on: ubuntu-latest
